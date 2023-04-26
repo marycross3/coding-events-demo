@@ -56,9 +56,9 @@ public class EventController {
     public String displayEditForm(Model model, @PathVariable int eventId) {
         Event eventToEdit = EventData.getById(eventId);
         model.addAttribute("event", eventToEdit);
-        String title = "Edit Event"+ eventToEdit.getName() + "(id=" +eventToEdit.getId() + ")";
+        String title = "Edit Event: "+ eventToEdit.getName() + "(Event ID:" +eventToEdit.getId() + ")";
         model.addAttribute("title", title);
-        return "";
+        return "events/edit";
     }
 
     @PostMapping("edit")
