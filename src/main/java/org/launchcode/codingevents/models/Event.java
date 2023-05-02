@@ -7,7 +7,7 @@ import java.util.Objects;
  * Created by Chris Bay
  */
 public class Event {
-
+//done
     private int id;
     private static int nextId = 1;
 
