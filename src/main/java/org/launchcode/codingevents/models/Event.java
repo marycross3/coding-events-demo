@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -24,16 +22,66 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotNull(message = "Location is required.")
+    @NotBlank(message = "Location is required.")
+    private String location;
+
+    @AssertTrue()
+    private boolean registration;
+
+    @Positive(message = "Attendees must be greater than 0.")
+    private int attendees;
+
+    @Pattern(regexp = "happy", message = "Incorrect password. Try again")
+    private String password;
+
+    public Event(String name, String description, String contactEmail, String location, boolean registration,
+                 int attendees, String password) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.registration= registration;
+        this.attendees = attendees;
+        this.password = password;
     }
 
     public Event() {
         this.id = nextId;
         nextId++;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(int attendees) {
+        this.attendees = attendees;
+    }
+
+    public boolean isRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(boolean registration) {
+        this.registration = registration;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getName() {
